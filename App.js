@@ -48,7 +48,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     resizeMode: 'cover',
-  }
+  },
+  detailsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    paddingHorizontal: 20,
+  },
 });
 
 const text = StyleSheet.create({
