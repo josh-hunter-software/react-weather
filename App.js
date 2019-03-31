@@ -12,7 +12,21 @@ import getImageForWeather from './utils/getImageForWeather';
 import SearchInput from './components/SearchInput';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: 'Garland',
+    };
+  }
+
+  handleUpdateLocation = city => {
+    this.setState({
+      location: city,
+    });
+  };
+
   render() {
+    const { location } = this.state;
     return (
       <KeyboardAvoidingView
       style={styles.container}
@@ -24,10 +38,13 @@ export default class App extends React.Component {
           imageStyle={styles.image}
           >
           <View style={styles.detailsContainer}>
-            <Text style={[text.large, text.style]}>San Francisco</Text>
+            <Text style={[text.large, text.style]}>{location}</Text>
             <Text style={[text.small, text.style]}>Lightly Cloudy</Text>
             <Text style={[text.large, text.style]}>24 degrees</Text>
-            <SearchInput placeholder="Search any city" />
+            <SearchInput
+              placeholder="Search any city"
+              onSubmit={this.handleUpdateLocation}
+            />
           </View>
         </ImageBackground>
       </KeyboardAvoidingView>
@@ -62,6 +79,7 @@ const text = StyleSheet.create({
     textAlign: 'center',
     fontFamily:
       Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
+    color: 'white',
   },
   large: {
     fontSize: 44,
